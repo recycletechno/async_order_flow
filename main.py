@@ -1,9 +1,9 @@
 import asyncio
 import logging
 import time
-from apscheduler.schedulers.asyncio import AsyncIOScheduler
 import numpy as np
 import random
+from apscheduler.schedulers.asyncio import AsyncIOScheduler
 
 logging.basicConfig(
     level=logging.INFO,
