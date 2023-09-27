@@ -18,17 +18,17 @@ A hypothesis has emerged that functions related to interacting with the exchange
 
 Along with the acceleration of the loop's work, a problem has arisen where the same strategy can be checked for conditions several times and launch multiple asynchronous tasks for entering or exiting a trade. To solve this problem, a locking mechanism needs to be introduced, which will prevent the launch of new asynchronous tasks for a strategy until the previous one is completed. For this purpose, the `@locking_strat` decorator has been created, which prevents the launch of new asynchronous tasks for a strategy until the previous one is completed.
 
-To run the example as if it worked without these innovations, initialize the TradingClass class with the `mode=MODE_AWAIT` attribute.
+To run the example as if it worked without these innovations, initialize the `TradingClass` class with the `mode=MODE_AWAIT` attribute.
 
-[Insert screenshot]
+![Screenshot of MODE_AWAIT](img/mode_await.png)
 
 Each line of the stats function represents a record for 3 seconds  of the test bench's operation. We start with an empty portfolio and gradually begin to accumulate and liquidate positions for each strategy. For each strategy, we can either be in a position (1) or out of a position (0). Signals arrive on schedule every 10 seconds: for entering a position, exiting a position, or an empty signal. The number of positions is indicated in the "Pos" section.
 
 As can be seen from the screenshot above, we start with a relatively fast chunk processing time of roughly 1 second. The number of processed strategies is measured in hundreds of thousands for a single record. However, as soon as we begin interacting with the exchange, the processing time for one chunk starts to increase significantly, and the number of processed strategies almost reaches an asymptote. 
 
-To run the example with the new approach, initialize the TradingClass class with the `mode=MODE_FUTURE` attribute. 
+To run the example with the new approach, initialize the `TradingClass` class in main.py with the `mode=MODE_FUTURE` attribute. 
 
-[Insert screenshot]
+![Screenshot of MODE_AWAIT](img/mode_future.png)
 
 If you look at the results of the program's operation in `MODE_FUTURE`, you can see that the number of processed strategies consistently increases by several thousand per iteration. The maximum processing time for one chunk during the program's operation does not exceed 1 second, and the number of positions is proportional to the previous mode.
 
