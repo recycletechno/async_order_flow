@@ -81,8 +81,8 @@ class TradingClass:
             await asyncio.sleep(sleep_time)
             actual_time = round(time.time() - start_time, 2)
 
-            log.info(f"Strats processed:[{self.strats_processed}], Max chunk time:[{self.last_chunk_loop_time}]"
-                     f" Pos:[{self.positions_len}] Stats time:[{actual_time}]")
+            log.info(f"strats processed:[{'{:,}'.format(self.strats_processed)}], max chunk time:[{self.last_chunk_loop_time}]"
+                     f" pos:[{self.positions_len}] stats time:[{actual_time}]")
 
     @staticmethod
     def get_chunk(lst: list, n: int) -> list:
